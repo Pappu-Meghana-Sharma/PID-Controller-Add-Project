@@ -13,7 +13,7 @@ def tune_mass(mass):
         target=0.1
         
         for t in range(240):
-            angles,rates=env.get_state()
+            angles,rates=env.get_imu_data()
             error=target-angles[1]
             torque=kp*error-0.01*rates[1]
             p.applyExternalTorque(drone,-1,[0,torque,0],p.LINK_FRAME)
@@ -26,4 +26,4 @@ def tune_mass(mass):
             best_kp=kp
         env.close()
         
-        return best_kp
+    return best_kp
