@@ -1,4 +1,3 @@
-# gain_scheduler.py
 import numpy as np
 
 class GainScheduler:

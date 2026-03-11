@@ -1,4 +1,3 @@
-# main_experiment.py
 from drone_physics import DroneEnvironment
 from control_logic import ResearchController
 from mpc_planner import QuadrotorMPC
@@ -98,36 +97,30 @@ def save_to_csv(filename, data):
 
 # Example usage: define a 2D gain table (mass, wind) and run experiments
 if __name__ == "__main__":
-    # Define grid points (mass in kg, wind magnitude in N)
-    masses = [0.027, 0.045, 0.060]
-    winds = [0.0, 0.1, 0.2]
+    try:
+        data = np.load("gain_table.npz")
+        masses_grid = data['masses'].tolist()
+        winds_grid = data['wind_magnitudes'].tolist()
+        gains_grid = data['gains_grid']          # shape (M, W, 6)
+        print("Loaded gain table from gain_table.npz")
+    except FileNotFoundError:
+        print("No gain table found; falling back to mass‑only lookup.")
+        masses_grid = winds_grid = gains_grid = None
+        
+        base_masses = [0.027, 0.045, 0.060]          # kg (Crazyflie base + variations)
+        payloads = [0.0, 0.005, 0.010]               # kg (0, 5g, 10g – within max payload)
+        
+        wind_magnitude = 0.2                          # N (strong gust)
+        wind_directions = [[1,0,0], [0,1,0], [-1,0,0], [0,-1,0]]  # +x, +y, -x, -y
 
-    # Gains for each combination: [Kp_a, Ki_a, Kd_a, Kp_r, Ki_r, Kd_r]
-    # These are placeholders; in practice you would tune these values.
-    gains_grid = [
-        # mass = 0.027
-        [[12.0, 0.1, 0.05, 0.6, 0.02, 0.01],   # wind=0.0
-         [13.0, 0.12, 0.06, 0.65, 0.025, 0.012], # wind=0.1
-         [14.0, 0.14, 0.07, 0.7, 0.03, 0.014]],  # wind=0.2
-        # mass = 0.045
-        [[15.5, 0.2, 0.08, 0.8, 0.03, 0.02],
-         [16.5, 0.22, 0.09, 0.85, 0.035, 0.022],
-         [17.5, 0.24, 0.10, 0.9, 0.04, 0.024]],
-        # mass = 0.060
-        [[18.0, 0.3, 0.10, 1.1, 0.04, 0.03],
-         [19.0, 0.32, 0.11, 1.15, 0.045, 0.032],
-         [20.0, 0.34, 0.12, 1.2, 0.05, 0.034]]
-    ]
+        # Loop over all combinations
+        for bm in base_masses:
+            for p in payloads:
+                for direction in wind_directions:
+                    wf = [wind_magnitude * d for d in direction]
+                    run_research_flight(bm, p, wf,
+                                        masses_grid=masses_grid,
+                                        winds_grid=winds_grid,
+                                        gains_grid=gains_grid)
 
-    # Run experiments for combinations
-    base_masses = [0.027, 0.045, 0.060]
-    payloads = [0.0, 0.005, 0.010]   # additional mass
-    wind_forces = [[0.2, 0, 0], [0, 0.2, 0], [-0.2, 0, 0]]  # example directions
-
-    for bm in base_masses:
-        for p in payloads:
-            for wf in wind_forces:
-                run_research_flight(bm, p, wf,
-                                    masses_grid=masses,
-                                    winds_grid=winds,
-                                    gains_grid=gains_grid)
+    

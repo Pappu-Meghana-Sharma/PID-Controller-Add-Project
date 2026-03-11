@@ -2,31 +2,37 @@ import numpy as np
 from gain_scheduler import GainScheduler
 
 class ResearchController:
+    """
+    Cascaded PID controller with optional 2D gain scheduling.
+    Gains are [Kp_a, Ki_a, Kd_a, Kp_r, Ki_r, Kd_r].
+    """
     def __init__(self, masses=None, winds=None, gains_grid=None):
-        # If no table provided, use a default 1D table (mass only) for backward compatibility
-        if masses is None or winds is None or gains_grid is None:
-            # Default: mass only (wind = 0 assumed)
+        
+        if masses is not None and winds is not None and gains_grid is not None:
+            self.scheduler = GainScheduler(masses, winds, gains_grid)
+        else:
+            
             self.scheduler = None
             self.lookup_table = {
                 0.027: [12.0, 0.1, 0.05, 0.6, 0.02, 0.01],
                 0.045: [15.5, 0.2, 0.08, 0.8, 0.03, 0.02],
                 0.060: [18.0, 0.3, 0.10, 1.1, 0.04, 0.03]
             }
-        else:
-            self.scheduler = GainScheduler(masses, winds, gains_grid)
         self.reset_state()
 
     def reset_state(self):
+        
         self.integral_angle = np.zeros(3)
         self.integral_rate = np.zeros(3)
         self.prev_angle_error = np.zeros(3)
         self.prev_rate_error = np.zeros(3)
 
     def get_gains(self, mass, wind_mag=0.0):
+        """Retrieve gains for given mass and wind magnitude."""
         if self.scheduler is not None:
             return self.scheduler.get_gains(mass, wind_mag)
         else:
-            # Fallback to old 1D interpolation
+            
             keys = sorted(self.lookup_table.keys())
             m_min, m_max = keys[0], keys[-1]
             m = np.clip(mass, m_min, m_max)
@@ -42,11 +48,18 @@ class ResearchController:
             return self.lookup_table[m_min].copy()
 
     def run_cascaded_control(self, target_angles, curr_angles, curr_rates, gains, dt):
+        """
+        Compute torque from desired angles and current state.
+        Gains: list of 6 floats.
+        dt: control loop time step (s).
+        """
         Kp_a, Ki_a, Kd_a, Kp_r, Ki_r, Kd_r = gains
 
-        # Outer loop: angle error -> desired rate
+        
         angle_error = target_angles - curr_angles
         self.integral_angle += angle_error * dt
+        
+        
         self.integral_angle = np.clip(self.integral_angle, -0.5, 0.5)
         angle_deriv = (angle_error - self.prev_angle_error) / dt
 
@@ -54,7 +67,7 @@ class ResearchController:
                          Ki_a * self.integral_angle +
                          Kd_a * angle_deriv)
 
-        # Inner loop: rate error -> torque
+        
         rate_error = desired_rates - curr_rates
         self.integral_rate += rate_error * dt
         self.integral_rate = np.clip(self.integral_rate, -0.5, 0.5)
@@ -64,6 +77,7 @@ class ResearchController:
                   Ki_r * self.integral_rate +
                   Kd_r * rate_deriv)
 
+        
         self.prev_angle_error = angle_error.copy()
         self.prev_rate_error = rate_error.copy()
 
