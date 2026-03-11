@@ -24,10 +24,10 @@ class DroneEnvironment:
             posObj=[0,0,0],
             flags=p.WORLD_FRAME
         )
-        p.applyExternalForce(
+        p.applyExternalTorque(
             self.drone_id,
             -1,
-            forceObj=torque,
+            torque,
             flags=p.LINK_FRAME
         )
     
@@ -38,6 +38,12 @@ class DroneEnvironment:
         vel,ang_vel=p.getBaseVelocity(self.drone_id)
         return np.array(angles),np.array(ang_vel)
     
+    def get_position(self):
+        pos,_=p.getBasePositionAndOrientation(self.drone_id)
+        return np.array(pos)
+    
+    def apply_control(self,torque):
+        p.applyExternalTorque(self.drone_id,-1,torque,p.LINK_FRAME)
     def step(self):
         p.stepSimulation()
     
