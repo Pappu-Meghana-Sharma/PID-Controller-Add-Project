@@ -1,0 +1,31 @@
+[2026-03-25 16:45] PID      | Hover     | Nominal          | RMSE=0.0255 | MAE=0.0122 | MaxErr=0.0863 | Steady=0.0038 | MeanRPM=93 | MeanEffort=92.9 | RT=0.66x | MeanStep=0.7ms
+[2026-03-25 16:47] PID      | Circle    | Nominal          | RMSE=1.3255 | MAE=1.1622 | MaxErr=1.9141 | Steady=1.4344 | MeanRPM=15717 | MeanEffort=15716.9 | RT=0.66x | MeanStep=0.3ms
+[2026-03-25 16:48] PID      | Figure-8  | Nominal          | RMSE=0.1692 | MAE=0.1576 | MaxErr=0.2629 | Steady=0.1779 | MeanRPM=69 | MeanEffort=69.2 | RT=0.67x | MeanStep=0.5ms
+[2026-03-25 16:49] PID      | Hover     | Wind Only        | RMSE=0.8392 | MAE=0.8116 | MaxErr=0.8945 | Steady=0.8848 | MeanRPM=18783 | MeanEffort=18783.0 | RT=0.66x | MeanStep=0.9ms
+[2026-03-25 16:50] PID      | Hover     | Payload Only     | RMSE=0.2321 | MAE=0.2300 | MaxErr=0.3189 | Steady=0.2292 | MeanRPM=25800 | MeanEffort=25799.6 | RT=0.66x | MeanStep=0.8ms
+[2026-03-25 16:51] PID      | Circle    | Wind Only        | RMSE=0.9632 | MAE=0.8858 | MaxErr=1.4031 | Steady=0.9852 | MeanRPM=18439 | MeanEffort=18438.8 | RT=0.66x | MeanStep=0.7ms
+[2026-03-25 16:52] PID      | Circle    | Payload Only     | RMSE=2.8169 | MAE=2.4613 | MaxErr=3.8386 | Steady=3.3567 | MeanRPM=20899 | MeanEffort=20898.6 | RT=0.66x | MeanStep=0.4ms
+[2026-03-25 16:52] PID      | Figure-8  | Wind Only        | RMSE=0.9090 | MAE=0.8471 | MaxErr=1.2611 | Steady=0.9553 | MeanRPM=18459 | MeanEffort=18458.6 | RT=0.66x | MeanStep=0.9ms
+[2026-03-25 16:53] PID      | Figure-8  | Payload Only     | RMSE=0.3063 | MAE=0.3004 | MaxErr=0.3893 | Steady=0.3147 | MeanRPM=25675 | MeanEffort=25675.1 | RT=0.66x | MeanStep=0.3ms
+[2026-03-25 16:54] PID      | Figure-8  | Wind + Payload   | RMSE=0.7768 | MAE=0.7198 | MaxErr=1.1231 | Steady=0.8229 | MeanRPM=20219 | MeanEffort=20219.3 | RT=0.69x | MeanStep=1.2ms
+[2026-03-25 16:55] MPC      | Hover     | Nominal          | RMSE=0.0002 | MAE=0.0001 | MaxErr=0.0022 | Steady=0.0001 | MeanRPM=107 | MeanEffort=107.1 | RT=0.43x | MeanStep=48.8ms
+[2026-03-25 16:59] MPC      | Circle    | Nominal          | RMSE=0.1755 | MAE=0.1429 | MaxErr=0.4849 | Steady=0.1356 | MeanRPM=243 | MeanEffort=242.6 | RT=0.31x | MeanStep=68.2ms
+[2026-03-25 17:02] PID      | Circle    | Nominal          | RMSE=1.1562 | MAE=0.9021 | MaxErr=1.9136 | Steady=1.5658 | MeanRPM=11845 | MeanEffort=11844.9 | RT=0.66x | MeanStep=0.3ms
+[2026-03-25 17:02] PID+MPC  | Circle    | Nominal          | RMSE=0.5907 | MAE=0.4088 | MaxErr=1.2507 | Steady=0.7601 | MeanRPM=15588 | MeanEffort=15587.7 | RT=0.66x | MeanStep=0.3ms
+[2026-03-31 22:46] MPC      | Circle    | Nominal          | RMSE=1.8395 | MAE=1.3491 | MaxErr=2.7065 | Steady=2.5716 | MeanEffort=27581.9 | RT=0.09x | MeanStep=221.7ms
+[2026-03-31 22:47] MPC      | Circle    | Nominal          | RMSE=1.0897 | MAE=0.8006 | MaxErr=2.6043 | Steady=1.1218 | MeanEffort=29995.9 | RT=0.36x | MeanStep=35.0ms
+[2026-03-31 22:49] MPC      | Hover     | Nominal          | RMSE=0.0894 | MAE=0.0647 | MaxErr=0.2681 | Steady=0.0333 | MeanEffort=28881.1 | RT=0.32x | MeanStep=42.8ms
+[2026-04-03 20:25] MPC      | Circle    | Nominal          | RMSE=0.0467 | MAE=0.0347 | MaxErr=0.1918 | Steady=0.0353 | MeanEffort=74.9 | RT=0.67x | MeanStep=11.8ms
+[2026-04-03 20:27] MPC      | Circle    | Payload Only     | RMSE=0.0738 | MAE=0.0707 | MaxErr=0.1830 | Steady=0.0683 | MeanEffort=136.9 | RT=0.58x | MeanStep=19.9ms
+[2026-04-03 20:28] PID      | Circle    | Payload Only     | RMSE=0.0466 | MAE=0.0347 | MaxErr=0.1908 | Steady=0.0352 | MeanEffort=96.3 | RT=0.56x | MeanStep=5.4ms
+[2026-04-03 20:28] MPC      | Circle    | Payload Only     | RMSE=0.0738 | MAE=0.0707 | MaxErr=0.1830 | Steady=0.0683 | MeanEffort=136.9 | RT=0.46x | MeanStep=28.2ms
+[2026-04-03 20:29] PID+MPC  | Circle    | Payload Only     | RMSE=0.0738 | MAE=0.0707 | MaxErr=0.1830 | Steady=0.0683 | MeanEffort=137.6 | RT=0.48x | MeanStep=19.7ms
+[2026-04-03 20:30] PID      | Circle    | Wind Only        | RMSE=0.0469 | MAE=0.0348 | MaxErr=0.1935 | Steady=0.0352 | MeanEffort=365.4 | RT=0.62x | MeanStep=2.1ms
+[2026-04-03 20:31] MPC      | Circle    | Wind Only        | RMSE=0.0469 | MAE=0.0347 | MaxErr=0.1935 | Steady=0.0352 | MeanEffort=359.6 | RT=0.63x | MeanStep=16.0ms
+[2026-04-03 20:32] PID+MPC  | Circle    | Wind Only        | RMSE=0.0469 | MAE=0.0347 | MaxErr=0.1935 | Steady=0.0352 | MeanEffort=360.2 | RT=0.55x | MeanStep=14.0ms
+[2026-04-03 20:33] PID      | Circle    | Wind Only        | RMSE=0.0472 | MAE=0.0350 | MaxErr=0.1969 | Steady=0.0348 | MeanEffort=981.0 | RT=0.66x | MeanStep=1.0ms
+[2026-04-03 20:34] MPC      | Circle    | Wind Only        | RMSE=0.0472 | MAE=0.0349 | MaxErr=0.1968 | Steady=0.0349 | MeanEffort=980.1 | RT=0.62x | MeanStep=15.5ms
+[2026-04-03 20:34] PID+MPC  | Circle    | Wind Only        | RMSE=0.0472 | MAE=0.0349 | MaxErr=0.1968 | Steady=0.0349 | MeanEffort=977.2 | RT=0.53x | MeanStep=15.1ms
+[2026-04-03 20:35] PID      | Circle    | Wind Only        | RMSE=0.0555 | MAE=0.0354 | MaxErr=0.1969 | Steady=0.0325 | MeanEffort=881.1 | RT=0.67x | MeanStep=0.3ms
+[2026-04-03 20:35] MPC      | Circle    | Wind Only        | RMSE=0.0020 | MAE=0.0017 | MaxErr=0.0039 | Steady=0.0011 | MeanEffort=522.1 | RT=0.58x | MeanStep=8.2ms
+[2026-04-03 20:35] PID+MPC  | Circle    | Wind Only        | RMSE=0.0030 | MAE=0.0029 | MaxErr=0.0036 | Steady=0.0031 | MeanEffort=1661.7 | RT=0.45x | MeanStep=15.3ms
