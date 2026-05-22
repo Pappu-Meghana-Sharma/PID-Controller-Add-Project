@@ -14,3 +14,7 @@ npy_data/
 
 # Spreadsheets
 z-Research Papers.xlsx
+
+# Ignore root figures in experiment_results (but track those in subfolders)
+experiment_results/*.pdf
+experiment_results/*.png
