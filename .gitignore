@@ -1,0 +1,16 @@
+# Python caches
+__pycache__/
+
+# Local experimental scripts folder (for local workspace cleaning only)
+experimental_scripts/
+
+# Local text files and summaries
+file_descriptions.txt
+professor_summary.md
+professor_summary_2.md
+
+# Local data cache
+npy_data/
+
+# Spreadsheets
+z-Research Papers.xlsx
